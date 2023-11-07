@@ -119,6 +119,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+cotacao_dolar
 
 # Spyder project settings
 .spyderproject
