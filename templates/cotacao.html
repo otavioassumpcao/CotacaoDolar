@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Cotação do Dólar</h2>
+<p>Data: {{ response.data }}</p>
+<p>Cotação: {{ response.cotacao }}</p>
+<p>Variação: {{ response.variacao }}%</p>
+{% if response.p_valor %}
+<p>P-Valor: {{ response.p_valor }}</p>
+{% endif %}
+{% endblock %}

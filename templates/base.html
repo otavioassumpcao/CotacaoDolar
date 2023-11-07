@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cotação Dólar{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <!-- Cabeçalho do site -->
+    </header>
+
+    <nav>
+        <!-- Navegação do site, se houver -->
+    </nav>
+
+    <main>
+        {% block content %}
+        <!-- Conteúdo principal da página -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Rodapé do site -->
+    </footer>
+</body>
+</html>

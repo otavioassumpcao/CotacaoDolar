@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Cotação do Dólar - Início
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Cotação do Dólar</h1>
+    <form action="/cotacao" method="get">
+        <label for="data">Digite a data (DD/MM/AAAA):</label>
+        <input type="text" id="data" name="data" required pattern="\d{2}/\d{2}/\d{4}">
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+{% endblock %}
