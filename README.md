@@ -24,6 +24,8 @@ A base inicial foi então expandida para uma base de dados SQL utilizando SQLite
 
 ## Instalação e Configuração
 
+É possível acessar a aplicação já funcionando através do link: [CotaçãoDolar](https://cotacaodolar-5a5df47fd772.herokuapp.com)
+
 Para rodar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório para sua máquina local:
