@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 3. Execute a aplicação utilizando o comando:
 ```bash
-app.py
+python app.py
 ```
 
 **Atenção:** o arquivo ```base.ipynb``` não deve ser rodado, ele está presente no código apenas por motivos de elucidação da construção da base, caso seja rodado, toda informação inserida na base após o início da aplicação será perdida.
