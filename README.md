@@ -1,4 +1,4 @@
-# Aplicação de Cotação do Dólar
+# Aplicação - Cotação do Dólar
 
 Este projeto é uma aplicação que permite aos usuários consultar a cotação do dólar americano para uma data específica. Caso a cotação não esteja disponível no banco de dados local, a aplicação buscará automaticamente as informações na API do Banco Central, salvará no banco de dados e apresentará os resultados ao usuário. Além da cotação, o usuário receberá informações sobre a variação da cotação em relação ao último dia útil, assim como o p-valor correspondente a essa variação.
 
