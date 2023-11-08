@@ -68,7 +68,7 @@ Após a inicialização, a aplicação estará acessível no seu navegador em: h
 ## Uso
 Para consultar a cotação do dólar, siga as etapas abaixo:
 
-1. Abra o seu navegador e vá para http://127.0.0.1:5000/.
+1. Abra o seu navegador e vá para http://localhost:5000
 2. No campo fornecido, insira a data desejada no formato (DD/MM/AAAA).
 3. Submeta o formulário para receber a cotação e as demais informações.
 
