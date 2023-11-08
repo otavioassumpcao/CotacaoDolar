@@ -28,7 +28,7 @@ Para rodar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório para sua máquina local:
 ```bash
-git clone https://github.com/otavioassumpcao/CotacaoDolar/tree/main
+git clone https://github.com/otavioassumpcao/CotacaoDolar.git
 ```
 
 2. Instale as dependências necessárias:
