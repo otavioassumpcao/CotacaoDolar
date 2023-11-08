@@ -108,11 +108,11 @@ Este projeto é minha primeira aplicação do tipo, portando, existem algumas qu
 
 1. **Cálculo do p-valor**:
 
-  A metodologia atual para o cálculo do p-valor pode apresentar um viés amostral. O p-valor é derivado das últimas 500 observações disponíveis; no entanto, se a data consultada pelo usuário for significativamente posterior à última cotação registrada, o p-valor seria calculado com base em um período anterior não contíguo. Por exemplo, se estivermos em 2030 e as últimas cotações disponíveis forem de 2023, o cálculo do p-valor utilizará as variações de 2023, introduzindo uma potencial distorção nos resultados. Embora no curto prazo isso possa não representar um problema significativo, é uma limitação que precisa ser considerada para análises em longo prazo e poderia ser abordada com uma atualização mais frequente da base de dados ou ajustes na lógica de cálculo.
+   A metodologia atual para o cálculo do p-valor pode apresentar um viés amostral. O p-valor é derivado das últimas 500 observações disponíveis; no entanto, se a data consultada pelo usuário for significativamente posterior à última cotação registrada, o p-valor seria calculado com base em um período anterior não contíguo. Por exemplo, se estivermos em 2030 e as últimas cotações disponíveis forem de 2023, o cálculo do p-valor utilizará as variações de 2023, introduzindo uma potencial distorção nos resultados. Embora no curto prazo isso possa não representar um problema significativo, é uma limitação que precisa ser considerada para análises em longo prazo e poderia ser abordada com uma atualização mais frequente da base de dados ou ajustes na lógica de cálculo.
 
 2. **Base de Comparação:**
 
-  A série histórica utilizada neste projeto começa em 02/01/1985, período em que o Brasil ainda não havia adotado o Real como moeda. Isso pode acarretar discrepâncias nos resultados apresentados pela aplicação, visto que os dados anteriores à adoção do Real em 1994 podem não estar devidamente ajustados para a nova moeda (não encontrei informações a respeito no site do Banco Central).
+   A série histórica utilizada neste projeto começa em 02/01/1985, período em que o Brasil ainda não havia adotado o Real como moeda. Isso pode acarretar discrepâncias nos resultados apresentados pela aplicação, visto que os dados anteriores à adoção do Real em 1994 podem não estar devidamente ajustados para a nova moeda (não encontrei informações a respeito no site do Banco Central).
 
 3. **Frontend:**
 
