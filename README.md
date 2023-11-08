@@ -22,10 +22,6 @@ A partir dessa base inicial, foi construída uma base em SQL utilizando o SQLite
 
 Em relação ao input de novas informações na base a partir da API do Banco Central é importante ressaltar que, essa API gera informações sobre cotação de compra e venda na data e hora solicitada. Para que houvesse uma compatibilidade entre as informações já existentes na base e as informações novas inseridas, foi tirada a média entre o valor de venda e o valor de compra da cotação, o resultado é o valor que é utilizado para os cálculos.
 
-## Uso da API do Banco Central
-
-
-
 ## Instalação e Configuração
 
 Para rodar o projeto localmente, siga os passos abaixo:
@@ -122,15 +118,9 @@ Este projeto é minha primeira aplicação do tipo, portando, existem algumas qu
 4. Distribuição normal:
    Assumi que a distribuição de probabilidade da serie histórica da variação da cotação do dólar é uma Normal principalmente pela análise gráfica, testes mais robustos devem ser feitos para verificar com mais precisão o tipo da distribuição.
 
-3. Valores da cotação:
-   A  base inicial utiliza a taxa de câmbio comercial para compra, já as informações coletadas da API são uma média da entre os valores de compra e venda, o correto seria utilizar somente os de compra.
+3. Valores da cotação e USO da API
+   A  base inicial utiliza a taxa de câmbio comercial para compra, já as informações coletadas da API são uma média da entre os valores de compra e venda, que são os dados disponibilizados pela API, o correto seria utilizar somente os de compra.
 
+## Licença 
 
-
-
-
-
-
-
-   
-
+Este projeto está licenciado sob a Licença MIT - veja o arquivo ```LICENSE.md``` para detalhes.
