@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+      - FLASK_DEBUG=0
+    volumes:
+      - .:/app
+      - ./data:/app/data  # Presume-se que você quer persistir dados aqui, se necessário.
+    command: gunicorn -b :5000 app:app
+

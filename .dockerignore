@@ -1,0 +1,14 @@
+venv/
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+.pytest_cache
+.git
+.gitignore
+.gittattributes
+*.ipynb
+base.ipynb
+Cotacao_Dolar_Serie_Historica.csv
+README.md
+LICENSE
