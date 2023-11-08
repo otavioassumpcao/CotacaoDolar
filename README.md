@@ -12,13 +12,13 @@ Este projeto é uma aplicação web que permite aos usuários consultar a cotaç
 
 ## Base de dados
 
-A base de dados foi construída através dos dos dados disponibilizados pelo Banco Central através do Ipeadata (http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=38590&module=M). A partir dela foi construída a base inicial Cotacao_Dolar_Serie_Histprica.csv, que captura o valor de compra diário do dólar comercial desde 02/01/1985. Foi adicionado também, uma coluna com a variação da cotação em relação ao último dia útil. O cálculo para essa variação segue o seguinte modelo:
+A base de dados foi construída através dos dos dados disponibilizados pelo Banco Central através do Ipeadata (http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=38590&module=M). A partir dela foi construída a base inicial ```Cotacao_Dolar_Serie_Histprica.csv```, que captura o valor de compra diário do dólar comercial desde 02/01/1985. Foi adicionado também, uma coluna com a variação da cotação em relação ao último dia útil. O cálculo para essa variação segue o seguinte modelo:
 
 ```math
 \text{Variação}_t=\frac{\text{Cotação}_t - \text{Cotação}_{t-1}}{{Cotação}_{t-1}} \times 100
 ```
 
-A partir dessa base inicial, foi construída uma base em SQL utilizando o SQLite, o código de construção dessa base pode ser visto no arquivo base.ipynb
+A partir dessa base inicial, foi construída uma base em SQL utilizando o SQLite, o código de construção dessa base pode ser visto no arquivo ```base.ipynb```
 
 Em relação ao input de novas informações na base a partir da API do Banco Central é importante ressaltar que, essa API gera informações sobre cotação de compra e venda na data e hora solicitada. Para que houvesse uma compatibilidade entre as informações já existentes na base e as informações novas inseridas, foi tirada a média entre o valor de venda e o valor de compra da cotação, o resultado é o valor que é utilizado para os cálculos.
 
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 app.py
 ```
 
-**Atenção:** o arquivo base.ipynb não deve ser rodado, ele está presente no código apenas por motivos de elucidação da construção da base, caso seja rodado, toda informação inserida na base após o início da aplicação será perdida.
+**Atenção:** o arquivo ```base.ipynb``` não deve ser rodado, ele está presente no código apenas por motivos de elucidação da construção da base, caso seja rodado, toda informação inserida na base após o início da aplicação será perdida.
 
 ## Uso
 Para consultar a cotação do dólar, siga as etapas abaixo:
