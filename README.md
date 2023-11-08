@@ -107,18 +107,23 @@ Este exemplo demonstra o poder da aplicação em detectar e quantificar o impact
 Este projeto é minha primeira aplicação do tipo, portando, existem algumas questões que ainda precisam ser revisadas, cito a seguir as que consegui identificar:
 
 1. **Cálculo do p-valor**:
+
   A metodologia atual para o cálculo do p-valor pode apresentar um viés amostral. O p-valor é derivado das últimas 500 observações disponíveis; no entanto, se a data consultada pelo usuário for significativamente posterior à última cotação registrada, o p-valor seria calculado com base em um período anterior não contíguo. Por exemplo, se estivermos em 2030 e as últimas cotações disponíveis forem de 2023, o cálculo do p-valor utilizará as variações de 2023, introduzindo uma potencial distorção nos resultados. Embora no curto prazo isso possa não representar um problema significativo, é uma limitação que precisa ser considerada para análises em longo prazo e poderia ser abordada com uma atualização mais frequente da base de dados ou ajustes na lógica de cálculo.
 
 2. **Base de Comparação:**
+
   A série histórica utilizada neste projeto começa em 02/01/1985, período em que o Brasil ainda não havia adotado o Real como moeda. Isso pode acarretar discrepâncias nos resultados apresentados pela aplicação, visto que os dados anteriores à adoção do Real em 1994 podem não estar devidamente ajustados para a nova moeda (não encontrei informações a respeito no site do Banco Central).
 
-3. Frontend:
+3. **Frontend:**
+
    Como esse é minha primeira aplicação onde utilizo HTML e CSS, acredito que as informações não estão sendo apresentadas da melhor maneira possível. Por exemplo, no frontend da aplicação não há uma explicação acerca do p-valor, ele simplesmente aparece como um número solto. Além disso, a estética da interface e a funcionalidade de inserção da data podem ser aprimoradas para proporcionar uma experiência de usuário mais intuitiva e visualmente agradável.
 
-4. Distribuição normal:
+4. **Distribuição normal:**
+
    A suposição de que a série histórica das variações da cotação do dólar segue uma distribuição normal foi baseada principalmente em uma análise gráfica. Reconheço que testes estatísticos mais robustos são necessários para confirmar essa suposição com maior precisão. O tipo de distribuição tem um impacto significativo na análise de significância estatística e, portanto, é crucial que essa suposição seja verificada de forma mais rigorosa.
 
-5. Valores da cotação e USO da API
+5. **Valores da cotação e USO da API:**
+
    A base de dados inicial contém taxas de câmbio comerciais referentes à compra, enquanto as informações adicionadas a partir da API do Banco Central representam uma média entre as taxas de compra e venda. Idealmente, para manter a consistência, deveríamos utilizar apenas os dados de compra. Esta discrepância metodológica pode levar a pequenas variações nos resultados finais e deve ser ajustada para garantir a integridade e a comparabilidade dos dados ao longo do tempo.
 
 ## Licença 
