@@ -43,6 +43,28 @@ python app.py
 
 **Atenção:** o arquivo ```base.ipynb``` não deve ser rodado, ele está presente no código apenas por motivos de elucidação da construção da base, caso seja rodado, toda informação inserida na base após o início da aplicação será perdida.
 
+### Rodando com Docker-compose
+Para facilitar a configuração do ambiente de desenvolvimento e produção, o usuário também pode usar Docker-compose.
+
+1. Clone o repositório para sua máquina local (caso não tenha feito ainda):
+```bash
+git clone https://github.com/otavioassumpcao/CotacaoDolar.git
+```
+
+2. Navegue até o diretório do projeto:
+```bash
+cd CotacaoDolar
+```
+
+3. Construa e inicie a aplicação usando Docker Compose:
+```bash
+docker-compose up --build
+```
+Isso irá construir a imagem Docker necessária e iniciar os containers definidos no seu arquivo docker-compose.yml.
+Após a inicialização, a aplicação estará acessível no seu navegador em: http://localhost:5000
+
+**Nota:** As instruções acima assumem que você tem o Docker e o Docker Compose instalados em sua máquina. Se estiver usando Docker Desktop, certifique-se de que ele está em execução antes de prosseguir.
+
 ## Uso
 Para consultar a cotação do dólar, siga as etapas abaixo:
 
