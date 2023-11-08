@@ -2,6 +2,8 @@
 
 Este projeto é uma aplicação que permite aos usuários consultar a cotação do dólar americano para uma data específica. Caso a cotação não esteja disponível no banco de dados local, a aplicação buscará automaticamente as informações na API do Banco Central, salvará no banco de dados e apresentará os resultados ao usuário. Além da cotação, o usuário receberá informações sobre a variação da cotação em relação ao último dia útil, assim como o p-valor correspondente a essa variação.
 
+É possível acessar a aplicação já funcionando através do link: [CotaçãoDolar](https://cotacaodolar-5a5df47fd772.herokuapp.com)
+
 ## Características
 
 - Consulta de cotação do dólar para datas específicas;
@@ -23,8 +25,6 @@ A base inicial foi então expandida para uma base de dados SQL utilizando SQLite
 É importante salientar que, ao adicionar novas informações à base de dados a partir da API do Banco Central, a API fornece cotações de compra e venda para a data e hora especificadas. Para garantir a compatibilidade entre os dados históricos existentes e as novas informações inseridas, optei por calcular a média entre os valores de venda e de compra. Este valor médio é então utilizado nos cálculos de variação da cotação. 
 
 ## Instalação e Configuração
-
-É possível acessar a aplicação já funcionando através do link: [CotaçãoDolar](https://cotacaodolar-5a5df47fd772.herokuapp.com)
 
 Para rodar o projeto localmente, siga os passos abaixo:
 
