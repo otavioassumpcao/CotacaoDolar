@@ -62,7 +62,7 @@ cd CotacaoDolar
 ```bash
 docker-compose up --build
 ```
-Isso irá construir a imagem Docker necessária e iniciar os containers definidos no seu arquivo docker-compose.yml.
+Isso irá construir a imagem Docker necessária e iniciar os containers definidos no arquivo ```docker-compose.yml```.
 Após a inicialização, a aplicação estará acessível no seu navegador em: http://localhost:5000
 
 **Nota:** As instruções acima assumem que você tem o Docker e o Docker Compose instalados em sua máquina. Se estiver usando Docker Desktop, certifique-se de que ele está em execução antes de prosseguir.
