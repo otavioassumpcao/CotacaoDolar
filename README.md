@@ -1,26 +1,26 @@
-# Aplicação Cotação Dólar
+# Aplicação de Cotação do Dólar
 
-Este projeto é uma aplicação web que permite aos usuários consultar a cotação do dólar americano para uma data específica. Se a cotação não estiver disponível no banco de dados local, a aplicação buscará automaticamente as informações na API do Banco Central, salvará no banco de dados e apresentará os resultados ao usuário. Além da cotação, o usuário também recebrá como informação a variação da cotação em relação ao último dia útil, bem como o p-valor referente a essa varição.
+Este projeto é uma aplicação que permite aos usuários consultar a cotação do dólar americano para uma data específica. Caso a cotação não esteja disponível no banco de dados local, a aplicação buscará automaticamente as informações na API do Banco Central, salvará no banco de dados e apresentará os resultados ao usuário. Além da cotação, o usuário receberá informações sobre a variação da cotação em relação ao último dia útil, assim como o p-valor correspondente a essa variação.
 
 ## Características
 
-- Consulta de cotação do dólar em uma data específica;
-- Cálculo da variação da cotação e análise de significância estatística;
-- Frontend simples com HTML e CSS;
-- Backend implementado em Python com Flask;
-- Persistência dos dados com SQLite3 e SQLAlchemy.
+- Consulta de cotação do dólar para datas específicas;
+- Cálculo da variação da cotação e análise de sua significância estatística;
+- Interface de usuário simples com HTML e CSS;
+- Backend implementado em Python utilizando Flask;
+- Persistência de dados com SQLite3 e SQLAlchemy.
 
-## Base de dados
+## Base de Dados
 
-A base de dados foi construída através dos dos dados disponibilizados pelo Banco Central através do Ipeadata (http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=38590&module=M). A partir dela foi construída a base inicial ```Cotacao_Dolar_Serie_Histprica.csv```, que captura o valor de compra diário do dólar comercial desde 02/01/1985. Foi adicionado também, uma coluna com a variação da cotação em relação ao último dia útil. O cálculo para essa variação segue o seguinte modelo:
+A base de dados foi construída a partir dos dados disponibilizados pelo Banco Central via Ipeadata (http://www.ipeadata.gov.br/ExibeSerie.aspx?serid=38590&module=M). Com esses dados, foi criada a base inicial `Cotacao_Dolar_Serie_Historica.csv`, que registra o valor de compra diário do dólar comercial desde 02/01/1985. Também foi adicionada uma coluna que mostra a variação percentual da cotação em relação ao último dia útil, calculada pela fórmula:
 
 ```math
-\text{Variação}_t=\frac{\text{Cotação}_t - \text{Cotação}_{t-1}}{{Cotação}_{t-1}} \times 100
+\text{Variação}_t = \frac{\text{Cotação}_t - \text{Cotação}_{t-1}}{\text{Cotação}_{t-1}} \times 100
 ```
 
-A partir dessa base inicial, foi construída uma base em SQL utilizando o SQLite, o código de construção dessa base pode ser visto no arquivo ```base.ipynb```
+A base inicial foi então expandida para uma base de dados SQL utilizando SQLite. O script utilizado para a construção dessa base está disponível no arquivo `base.ipynb`.
 
-Em relação ao input de novas informações na base a partir da API do Banco Central é importante ressaltar que, essa API gera informações sobre cotação de compra e venda na data e hora solicitada. Para que houvesse uma compatibilidade entre as informações já existentes na base e as informações novas inseridas, foi tirada a média entre o valor de venda e o valor de compra da cotação, o resultado é o valor que é utilizado para os cálculos.
+É importante salientar que, ao adicionar novas informações à base de dados a partir da API do Banco Central, a API fornece cotações de compra e venda para a data e hora especificadas. Para garantir a compatibilidade entre os dados históricos existentes e as novas informações inseridas, optei por calcular a média entre os valores de venda e de compra. Este valor médio é então utilizado nos cálculos de variação da cotação.
 
 ## Instalação e Configuração
 
@@ -36,7 +36,7 @@ git clone https://github.com/otavioassumpcao/CotacaoDolar/tree/main
 pip install -r requirements.txt
 ```
 
-3. Execute o aplicativo em seu terminal:
+3. Execute a aplicação utilizando o comando:
 ```bash
 app.py
 ```
@@ -106,21 +106,21 @@ Este exemplo demonstra o poder da aplicação em detectar e quantificar o impact
 ## Limitações e Considerações finais
 Este projeto é minha primeira aplicação do tipo, portando, existem algumas questões que ainda precisam ser revisadas, cito a seguir as que consegui identificar:
 
-1. Cálculo do p-valor:
-   Existe um problema amostral no cálculo do p-valor. Como essa estatística é calculada a partir das 500 últimas observações, é possível que, dependendo da data que o usuário está consultado, o p-valor seja calculado a partir de datas mais anteriores do que as precisamente 500 últimas. Isso acontece pelo fato de o programa adicionar as informações na base de dados, quando não consta nela, a partir da API do Banco Central apenas para a data consultada e a do dia anterior. Isso no curto prazo pode não ser um problema tão grande mas, por exemplo, se o usuário estiver no ano de 2030 e as últimas cotações registradas são do ano de 2023, o cálculo do p-valor será feito a partir do valor das varições de 2023, o que gera uma inconsistência no resultado obtido.
+1. **Cálculo do p-valor**:
+  A metodologia atual para o cálculo do p-valor pode apresentar um viés amostral. O p-valor é derivado das últimas 500 observações disponíveis; no entanto, se a data consultada pelo usuário for significativamente posterior à última cotação registrada, o p-valor seria calculado com base em um período anterior não contíguo. Por exemplo, se estivermos em 2030 e as últimas cotações disponíveis forem de 2023, o cálculo do p-valor utilizará as variações de 2023, introduzindo uma potencial distorção nos resultados. Embora no curto prazo isso possa não representar um problema significativo, é uma limitação que precisa ser considerada para análises em longo prazo e poderia ser abordada com uma atualização mais frequente da base de dados ou ajustes na lógica de cálculo.
 
-2. Base de comparação:
-   A série histórica da cotação do dólar tem dados a partir de 02/01/1985 o que pode gerar inconsistências nos resultados apresentados pela aplicação, já que o Real foi implementado no Brasil apenas em 1994, ou seja, as informações apresentadas anteriomente a essa data podem não estar ajustadas para o Real (não encontrei informações a respeito no site do Banco Central).
+2. **Base de Comparação:**
+  A série histórica utilizada neste projeto começa em 02/01/1985, período em que o Brasil ainda não havia adotado o Real como moeda. Isso pode acarretar discrepâncias nos resultados apresentados pela aplicação, visto que os dados anteriores à adoção do Real em 1994 podem não estar devidamente ajustados para a nova moeda (não encontrei informações a respeito no site do Banco Central).
 
 3. Frontend:
-   Como esse é minha primeira aplicação onde utilizo html e css, acredito que as informações não estão sendo apresentadas da melhor maneira possível. Por exemplo, no frontend da aplicação não há uma explicação acerca do p-valor, ele simplesmente aparece como um número solto. Além disso, a parte visual e maneira de fazer o input da data de consulta poderiam ser mais elegantes.
+   Como esse é minha primeira aplicação onde utilizo HTML e CSS, acredito que as informações não estão sendo apresentadas da melhor maneira possível. Por exemplo, no frontend da aplicação não há uma explicação acerca do p-valor, ele simplesmente aparece como um número solto. Além disso, a estética da interface e a funcionalidade de inserção da data podem ser aprimoradas para proporcionar uma experiência de usuário mais intuitiva e visualmente agradável.
 
 4. Distribuição normal:
-   Assumi que a distribuição de probabilidade da serie histórica da variação da cotação do dólar é uma Normal principalmente pela análise gráfica, testes mais robustos devem ser feitos para verificar com mais precisão o tipo da distribuição.
+   A suposição de que a série histórica das variações da cotação do dólar segue uma distribuição normal foi baseada principalmente em uma análise gráfica. Reconheço que testes estatísticos mais robustos são necessários para confirmar essa suposição com maior precisão. O tipo de distribuição tem um impacto significativo na análise de significância estatística e, portanto, é crucial que essa suposição seja verificada de forma mais rigorosa.
 
-3. Valores da cotação e USO da API
-   A  base inicial utiliza a taxa de câmbio comercial para compra, já as informações coletadas da API são uma média da entre os valores de compra e venda, que são os dados disponibilizados pela API, o correto seria utilizar somente os de compra.
+5. Valores da cotação e USO da API
+   A base de dados inicial contém taxas de câmbio comerciais referentes à compra, enquanto as informações adicionadas a partir da API do Banco Central representam uma média entre as taxas de compra e venda. Idealmente, para manter a consistência, deveríamos utilizar apenas os dados de compra. Esta discrepância metodológica pode levar a pequenas variações nos resultados finais e deve ser ajustada para garantir a integridade e a comparabilidade dos dados ao longo do tempo.
 
 ## Licença 
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo ```LICENSE.md``` para detalhes.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo ```LICENSE.md``` para maiores detalhes.
