@@ -20,7 +20,7 @@ A base de dados foi construída a partir dos dados disponibilizados pelo Banco C
 
 A base inicial foi então expandida para uma base de dados SQL utilizando SQLite. O script utilizado para a construção dessa base está disponível no arquivo `base.ipynb`.
 
-É importante salientar que, ao adicionar novas informações à base de dados a partir da API do Banco Central, a API fornece cotações de compra e venda para a data e hora especificadas. Para garantir a compatibilidade entre os dados históricos existentes e as novas informações inseridas, optei por calcular a média entre os valores de venda e de compra. Este valor médio é então utilizado nos cálculos de variação da cotação.
+É importante salientar que, ao adicionar novas informações à base de dados a partir da API do Banco Central, a API fornece cotações de compra e venda para a data e hora especificadas. Para garantir a compatibilidade entre os dados históricos existentes e as novas informações inseridas, optei por calcular a média entre os valores de venda e de compra. Este valor médio é então utilizado nos cálculos de variação da cotação. 
 
 ## Instalação e Configuração
 
@@ -126,7 +126,18 @@ Este exemplo demonstra o poder da aplicação em detectar e quantificar o impact
 </p>
 
 ## Limitações e Considerações finais
-Este projeto é minha primeira aplicação do tipo, portando, existem algumas questões que ainda precisam ser revisadas, cito a seguir as que consegui identificar:
+
+Durante o desenvolvimento desta aplicação, deparei-me com alguns desafios significativos. Descrevo abaixo como cada um foi abordado, com o intuito de esclarecer o raciocínio por trás das decisões tomadas e facilitar a identificação de potenciais melhorias.
+
+1. **Tratamento de Datas Não Disponíveis**:
+   Um usuário pode solicitar dados de uma data para a qual nem a própria data nem o último dia útil precedente estão disponíveis na base de dados. Isso impede o cálculo da variação da cotação para a data solicitada. Para contornar esse desafio, o sistema foi programado para adicionar automaticamente tanto a data solicitada $t$ quanto o dia anterior $t-1$ ao banco de dados, permitindo assim o cálculo da variação necessária.
+
+2. **Manuseio de Lacunas nos Dados**:
+   As cotações do dólar comercial não são registradas durante finais de semana e feriados, o que cria lacunas nos dados e dificulta o cálculo de variações em dias subsequentes a essas pausas. Para resolver essa questão, a aplicação foi ajustada para tratar o último dia útil disponível antes da data consultada como base para o cálculo da variação. Desta maneira, mesmo após finais de semana ou feriados, é possível fornecer a variação correta para o usuário.
+
+Essas soluções visam manter a continuidade e a precisão dos dados fornecidos pela aplicação. Entretanto, estou ciente de que sempre há espaço para melhorias e convido a comunidade a contribuir com ideias que possam refinar ainda mais a lógica e o funcionamento da aplicação.
+
+Como o projeto é minha primeira aplicação do tipo, estou ciente que existem algumas questões que ainda precisam ser revisadas, cito a seguir as que consegui identificar:
 
 1. **Cálculo do p-valor**:
 
