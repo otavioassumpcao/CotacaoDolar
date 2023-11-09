@@ -11,6 +11,6 @@ services:
       - FLASK_DEBUG=0
     volumes:
       - .:/app
-      - ./data:/app/data  # Presume-se que você quer persistir dados aqui, se necessário.
+      - ./data:/app/data
     command: gunicorn -b :5000 app:app
 
